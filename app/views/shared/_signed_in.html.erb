@@ -1,0 +1,27 @@
+<%= current_user.first_name %>
+<% if current_user.has_role? :admin %>
+- "master of the universe"
+<% end %>
+
+<h2>Grupper</h2>
+
+<table class="table">
+<tr>
+	<th>Namn</th>
+	<th>Skola</th>
+	<th>Prenumerera</th>
+</tr>
+<% current_user.groups.each do |g| %>
+<tr>
+<td><%= g.name %></td>
+<td><%= g.school %></td>
+<td><% if g.findeble == true %>
+	<a href="#">Bli medlem</a>
+	<% elseif g.findeble == false && current_user.has_role? => :teacher %>	
+	Publicera grupp
+	<% else %>
+	Är redan medlem
+	<% end %></td>
+</tr>
+<% end %>
+</table>
