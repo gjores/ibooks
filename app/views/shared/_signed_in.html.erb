@@ -17,8 +17,6 @@
 <td><%= g.school %></td>
 <td><% if g.findeble == true %>
 	<a href="#">Bli medlem</a>
-	<% elseif g.findeble == false && current_user.has_role? => :teacher %>	
-	Publicera grupp
 	<% else %>
 	Är redan medlem
 	<% end %></td>

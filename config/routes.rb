@@ -1,4 +1,7 @@
 IbookDb::Application.routes.draw do
+  resources :questions
+
+
   resources :groups
 
 

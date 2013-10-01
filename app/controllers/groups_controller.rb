@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups = current_user.groups.where(:findeble => true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +24,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   # GET /groups/new.json
   def new
-    @group = Group.new
+    @group = current_user.groups.build(params[:group])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(params[:group])
+    @group = current_user.groups.create(params[:group])
 
     respond_to do |format|
       if @group.save
